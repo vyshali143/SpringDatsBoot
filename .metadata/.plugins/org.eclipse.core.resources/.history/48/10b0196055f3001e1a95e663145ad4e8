@@ -1,0 +1,5 @@
+package com.sathya.orm.exceptionhandling;
+
+public class RestExceptionHandler {
+
+}

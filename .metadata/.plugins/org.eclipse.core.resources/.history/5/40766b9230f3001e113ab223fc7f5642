@@ -1,0 +1,68 @@
+package com.sathya.orm;
+
+import java.util.List;
+
+import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.sathya.orm.entity.Hospital;
+import com.sathya.orm.model.HospitalDetails;
+import com.sathya.orm.service.HospitalService;
+
+@RestController
+@RequestMapping("/api/hospital")
+public class Client {
+	
+	@Autowired
+	HospitalService hospitalService;
+	
+	@PostMapping("/save")
+	public Hospital createHospital(@RequestBody HospitalDetails hospitalDetails)
+	{
+		return hospitalService.createHospital(hospitalDetails);
+	}
+    
+	@GetMapping("/{id}")
+	public Hospital getHospital(@PathVariable Long id)
+	{
+		return hospitalService.getHospital(id);
+	}
+	
+	@GetMapping("/getall")
+	public List<Hospital> getHospitals()
+	{
+		return hospitalService.getHospitalList();
+	}
+	
+	
+	@DeleteMapping("/{id}")
+	public void deleteHospitalById(@PathVariable  Long id)
+	{
+		  hospitalService.deleteHospital(id);
+	}
+	
+	@PostMapping("/saveall")
+	public List<Hospital> saveAll(@RequestBody List<HospitalDetails> hospitals)
+	{
+		return hospitalService.saveAllHospitals(hospitals);
+	}
+
+    /*@PutMapping("/update/{id}")
+	public void updateById(@PathVariable Long id)
+	{
+		hospitalService.updateById();
+}*/
+
+	public  void updateById(@PathVariable int id){
+        HospitalService hospital = new HospitalService();
+        hospital.updateHospitalById(2, "Updated Hospital Prime");
+}
+}

@@ -1,0 +1,5 @@
+package com.sathya.orm.entity;
+
+public class Hospital {
+
+}

@@ -1,0 +1,37 @@
+package com.sathya.orm;
+
+import java.util.List;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class TestController {
+	@GetMapping("/test")
+	public String wish()
+	{
+		return "Hi bepi Good Morning";
+	}
+	@GetMapping("/wish/{name}")
+	public String greet(@PathVariable String name)
+	{
+		return " Good Morning"+name;
+	}
+
+	List<Book> books=List.of(new Book(101,"chandana","Harini",500),
+							 new Book(102,"Bepi","Vathri",999),
+							 new Book(103,"Madhu","Raji",850),
+							 new Book(104,"Vyshu","Deedhu",1),
+							 new Book(101,"Jaisri","Mahi",700));
+	@GetMapping("/books")
+	public List<Book> getBook(){
+		return books;
+	}
+
+}
+	
+	
+	
+			
+

@@ -1,0 +1,13 @@
+package com.sathya.orm;
+
+import java.util.List;
+
+public class Bookslist {
+
+	List<Book> books=List.of(new Book(101,"chandana","Harini",5),
+							 new Book(102,"Bepi","Vathri",5),
+							 new Book(103,"Madhu","Raji",6),
+							 new Book(104,"Vyshu","Deedhu",1),
+							 new Book(101,"Jaisri","Mahi",4));
+			
+}

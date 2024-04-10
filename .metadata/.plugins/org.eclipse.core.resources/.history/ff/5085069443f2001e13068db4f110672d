@@ -1,0 +1,3 @@
+spring.application.name=SpringRestEx1
+
+server.port=7681

@@ -1,0 +1,34 @@
+package com.sathya.orm;
+
+public class Book {
+
+	private int isbn;
+	private String BookName;
+	private String BookAuthor;
+	private double BookPrice;
+	public int getIsbn() {
+		return isbn;
+	}
+	public void setIsbn(int isbn) {
+		this.isbn = isbn;
+	}
+	public String getBookName() {
+		return BookName;
+	}
+	public void setBookName(String bookName) {
+		BookName = bookName;
+	}
+	public String getBookAuthor() {
+		return BookAuthor;
+	}
+	public void setBookAuthor(String bookAuthor) {
+		BookAuthor = bookAuthor;
+	}
+	public double getBookPrice() {
+		return BookPrice;
+	}
+	public void setBookPrice(double bookPrice) {
+		BookPrice = bookPrice;
+	}
+	
+}

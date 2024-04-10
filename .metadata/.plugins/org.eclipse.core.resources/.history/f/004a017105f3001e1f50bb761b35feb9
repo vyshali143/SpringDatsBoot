@@ -1,0 +1,6 @@
+package com.sathya.orm.model;
+
+public class HospitalDetails {
+	
+	
+}

@@ -1,0 +1,5 @@
+package com.sathya.orm.repository;
+
+public interface HospitalRepository {
+
+}

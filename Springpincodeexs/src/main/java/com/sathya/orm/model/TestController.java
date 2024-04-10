@@ -1,0 +1,32 @@
+package com.sathya.orm.model;
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
+
+@RestController
+public class TestController {
+	@GetMapping("/quotes")
+		public ResponseEntity<Quote> getAllQuotes()
+	{
+		String url="https://dummyjson.com/quotes";
+		RestTemplate resttemplate=new RestTemplate();
+		ResponseEntity<Quote> res=resttemplate.getForEntity(url,Quote.class);
+		return res;
+	}
+		
+	
+	@GetMapping("/quotes/{number}")
+	public ResponseEntity<Quote> getQuotes(@PathVariable int number)
+	{
+		String url="https://dummyjson.com/quotes/"+number;
+		RestTemplate resttemplate=new RestTemplate();
+		ResponseEntity<Quote> res=resttemplate.getForEntity(url,Quote.class);
+		return res;
+	}
+}
+
+	
+

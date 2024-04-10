@@ -1,0 +1,25 @@
+package com.sathya.orm;
+
+import java.util.List;
+
+import org.springframework.web.bind.annotation.GetMapping;
+
+
+public class Bookslist {
+
+	List<Book> books=List.of(new Book(101,"chandana","Harini",500),
+							 new Book(102,"Bepi","Vathri",999),
+							 new Book(103,"Madhu","Raji",850),
+							 new Book(104,"Vyshu","Deedhu",1),
+							 new Book(101,"Jaisri","Mahi",700));
+	@GetMapping("/books")
+	public List<Book> getBook(){
+		return books;
+	}
+
+}
+	
+	
+	
+			
+

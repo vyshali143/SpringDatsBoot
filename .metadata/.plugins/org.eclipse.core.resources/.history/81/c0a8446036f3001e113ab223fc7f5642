@@ -1,0 +1,88 @@
+package com.sathya.orm.service;
+
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.sathya.orm.entity.Hospital;
+import com.sathya.orm.model.HospitalDetails;
+import com.sathya.orm.repository.HospitalRepository;
+
+@Service
+public class HospitalService {
+@Autowired
+	HospitalRepository hospitalRepository;
+
+	public Hospital createHospital(HospitalDetails hospitalDetails)
+  {
+		//Reading the data from model class set the data to entity class
+		Hospital hospital=new Hospital();
+		hospital.setName(hospitalDetails.getName());
+		hospital.setLocation(hospitalDetails.getLocation());
+		hospital.setRating(hospitalDetails.getRating());
+		hospital.setCreatedAt(LocalDateTime.now());
+		hospital.setCreatedBy(System.getProperty("user.name"));
+		
+		//save method save the hospital into database return the hospital
+		Hospital savedHospital=hospitalRepository.save(hospital);
+		
+			return savedHospital;
+		}
+	public Hospital getHospital(int id) {
+		Optional<Hospital> optionalHospital=hospitalRepository.findById(id);
+		if(optionalHospital.isPresent())
+		{
+			return optionalHospital.get();
+		}
+		else
+		{
+			return null;
+		}
+	}
+	
+	public List<Hospital> getHospitalList(){
+		return hospitalRepository.findAll();
+	}
+	public void deleteHospital(int id) {
+		hospitalRepository.deleteById(id);
+	}
+	
+	
+	
+	public List<Hospital> saveAllHospitals(List<HospitalDetails> details){
+		List<Hospital> hospitals=new ArrayList<>();
+		for(HospitalDetails hospitalDetails :details)
+		{
+			Hospital hospital=new Hospital();
+			hospital.setName(hospitalDetails.getName());
+			hospital.setLocation(hospitalDetails.getLocation());
+			hospital.setRating(hospitalDetails.getRating());
+			hospital.setCreatedAt(LocalDateTime.now());
+			hospital.setCreatedBy(System.getProperty("user.name"));
+			hospitals.add(hospital);
+		}
+		return hospitalRepository.saveAll(hospitals);
+		}
+
+
+	    @SuppressWarnings("null")
+		public void updateHospitalById(int id, String newName) {
+	        Hospital[] hospitals=null;
+			for (Hospital hospital : hospitals) {
+	            if (hospital.getId() == id) {
+	                hospital.setName(newName);
+	                
+	                System.out.println("Hospital details updated successfully.");
+	                return;
+	            }
+	        }
+	        System.out.println("Hospital with ID " + id + " not found.");
+	    }
+	
+	
+
+}

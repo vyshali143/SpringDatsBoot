@@ -1,0 +1,5 @@
+package com.sathya.orm.service;
+
+public class HospitalService {
+
+}

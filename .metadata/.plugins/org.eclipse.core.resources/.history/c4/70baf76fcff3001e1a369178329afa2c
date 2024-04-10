@@ -1,0 +1,61 @@
+package com.sathya.orm;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.sathya.orm.entity.Hospital;
+import com.sathya.orm.model.HospitalDetails;
+import com.sathya.orm.service.HospitalService;
+
+import jakarta.validation.Valid;
+
+public class HospitalController {
+	@RestController
+	@RequestMapping("/api/hospital")
+	public class Client {
+		
+		@Autowired
+		HospitalService hospitalService;
+		
+		@PostMapping("/save")
+		public Hospital createHospital(@Valid@RequestBody HospitalDetails hospitalDetails) 
+		{
+			return hospitalService.createHospital(hospitalDetails);
+		}
+		
+		@GetMapping("/{id}")
+		public Hospital getHospital(@PathVariable int id)
+		{
+			return hospitalService.getHospital(id);
+		}
+		
+		@GetMapping("/getall")
+		public List<Hospital> getHospitals()
+		{
+			return hospitalService.getHospitals();
+		
+		}
+		
+		@DeleteMapping("/{id}")
+		public void deleteById(@PathVariable long id)
+		{
+			hospitalService.deleteById(id);
+		}
+		
+		@PostMapping("/saveall")
+		public List<Hospital> createHospitals(List<HospitalDetails> hospitals)
+		{
+			return hospitalService.createHospitals(hospitals);
+		}
+		
+
+	}
+}
